@@ -69,9 +69,10 @@ public class Sprint {
 	}
 	
 	public void setDates(Date begin, Date end) {
-		if (begin == null || end == null || this.begin == null || this.end == null )
+		if (begin == null || end == null) {
 			return;
-		if (this.begin.after(this.end)) {
+		}
+		if (begin.after(end)) {
 			throw new IllegalArgumentException("Sprint begin date must be <= end date");
 		}
 		this.begin = begin;
