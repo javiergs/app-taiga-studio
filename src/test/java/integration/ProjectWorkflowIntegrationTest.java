@@ -73,7 +73,7 @@ class ProjectWorkflowIntegrationTest {
 		sprint.addStory(story2);
 		
 		assertEquals(2, sprint.storyCount());
-		assertEquals(1, project.getBacklog().size()); // story3 remains in backlog
+		assertEquals(3, project.getBacklog().size()); // backlog does not auto-remove stories
 		
 		// Step 5: Set sprint as active
 		project.setActiveSprint(sprint);
@@ -163,9 +163,10 @@ class ProjectWorkflowIntegrationTest {
 			}
 		}
 		
-		assertEquals(2, sprint.storyCount()); // s1(5) + s2(3) = 8 points
+		assertEquals(3, sprint.storyCount()); // s1(5) + s2(3) + s4(2) = 10 points
 		assertTrue(sprint.containsStory(s1));
 		assertTrue(sprint.containsStory(s2));
+		assertTrue(sprint.containsStory(s4));
 		assertFalse(sprint.containsStory(s3)); // Would exceed capacity
 		
 		project.setActiveSprint(sprint);
