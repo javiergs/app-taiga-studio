@@ -21,10 +21,6 @@ A Java Swing-based Agile project management application inspired by Taiga.io. Ta
   - Drag-and-drop task reordering
   - Edit and manage task details
 
-### Visualization
-- **Burndown Charts**: Track sprint progress with visual burndown charts
-- **Sprint Overview**: View and manage active sprints
-- **Status Tracking**: Monitor story and task statuses
 
 ## 🏗️ Architecture
 
@@ -65,20 +61,7 @@ The application follows a modular architecture organized into distinct packages:
   - `TaskListPanel`: Display list of tasks
   - `TaskTransferHandler`: Drag-and-drop task reordering
   - `TaskListener`: Task interaction handling
-
-## 🧪 Testing
-
-The project includes comprehensive test coverage:
-
-- `BurndownChartTest`: Burndown chart functionality
-- `CreateStoryTest`: Story creation workflows
-- `EditProjectTest`: Project editing features
-- `EditStoryPanelTest`: Story editing UI
-- `NewProjectTest`: Project creation
-- `SprintTests`: Sprint management
-- `TaskTest`: Task operations
-- `TestBacklog`: Backlog functionality
-- `TestHomePanel`: Home panel features
+    
 
 ## 🎨 User Interface
 
@@ -94,10 +77,8 @@ The application features a clean Swing-based GUI with:
 
 The project uses:
 - **Java Swing**: For GUI components
-- **JUnit**: For testing (via Maven Surefire)
 - **Maven**: For build management
 
-No external third-party libraries required beyond Java SE standard library.
 
 ## 👥 Authors
 
@@ -111,9 +92,6 @@ No external third-party libraries required beyond Java SE standard library.
 - **Kevin Mokarapiromya** - Task Management
 - **Finley Room** - Sprint Management
 
-## 📄 License
-
-This project is an academic project. Please check with the project maintainers for licensing information.
 
 ## 🔧 Development
 
@@ -142,7 +120,7 @@ TaigaStudioThree/
 - Package-private visibility where appropriate
 - Null-safe programming with `Objects.requireNonNull()`
 - Singleton pattern for global state (`Blackboard`)
-- Listener pattern for UI interactions
+- Observer pattern for UI interactions
 - TransferHandler for drag-and-drop functionality
 
 ## 🐛 Known Issues
