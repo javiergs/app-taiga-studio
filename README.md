@@ -26,41 +26,6 @@ A Java Swing-based Agile project management application inspired by Taiga.io. Ta
 - **Sprint Overview**: View and manage active sprints
 - **Status Tracking**: Monitor story and task statuses
 
-## 🚀 Getting Started
-
-### Prerequisites
-- **Java 21** or higher
-- **Maven 3.x** or higher
-
-### Building the Project
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd TaigaStudioThree
-
-# Build with Maven
-mvn clean install
-
-# Run the application
-mvn exec:java -Dexec.mainClass="home.Main"
-```
-
-Alternatively, compile and run manually:
-
-```bash
-# Compile
-mvn compile
-
-# Run
-java -cp target/classes home.Main
-```
-
-### Running Tests
-
-```bash
-mvn test
-```
 
 ## 🏗️ Architecture
 
@@ -104,27 +69,25 @@ The application follows a modular architecture organized into distinct packages:
 
 ## 🧪 Testing
 
-The project includes comprehensive test coverage:
+The project includes two types of tests:
 
-- `BurndownChartTest`: Burndown chart functionality
-- `CreateStoryTest`: Story creation workflows
-- `EditProjectTest`: Project editing features
-- `EditStoryPanelTest`: Story editing UI
-- `NewProjectTest`: Project creation
-- `SprintTests`: Sprint management
-- `TaskTest`: Task operations
-- `TestBacklog`: Backlog functionality
+### Automated Unit & Integration Tests (No UI Required)
+Perfect for CI/CD pipelines and automated validation:
+
+- `TaskUnitTest`: Task creation, modification, completion tracking
+- `StoryUnitTest`: Story lifecycle, task management, validation
+- `BacklogUnitTest`: Backlog operations, prioritization, reordering
+- `SprintUnitTest`: Sprint management, story handling, date validation
+- `ProjectUnitTest`: Project management, sprint and backlog operations
+- `DeveloperUnitTest`: Developer entity management
+- `BlackboardUnitTest`: Singleton pattern, project management, state handling
+- `ProjectWorkflowIntegrationTest`: End-to-end workflow testing
+
+### Manual UI Tests
+For visual testing and demonstrations:
 - `TestHomePanel`: Home panel features
 
-## 🎨 User Interface
-
-The application features a clean Swing-based GUI with:
-
-- **Navigation**: Easy switching between home, project arena, and project views
-- **Drag-and-Drop**: Intuitive story and task prioritization
-- **Modal Forms**: Clean dialogs for creating and editing entities
-- **Visual Charts**: Burndown charts for sprint tracking
-- **Responsive Layout**: BorderLayout-based design for flexible UI
+**📊 Test Reports:** Generated in `target/surefire-reports/` after running tests
 
 ## 📦 Dependencies
 
@@ -146,10 +109,6 @@ No external third-party libraries required beyond Java SE standard library.
 - **Alexander Bloomer** - Task Management
 - **Kevin Mokarapiromya** - Task Management
 - **Finley Room** - Sprint Management
-
-## 📄 License
-
-This project is an academic project. Please check with the project maintainers for licensing information.
 
 ## 🔧 Development
 
@@ -195,7 +154,6 @@ Potential areas for improvement:
 - REST API for remote access
 - Customizable themes and layouts
 
----
 
 **Version**: 3.0  
 **Last Updated**: 2026
