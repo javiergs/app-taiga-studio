@@ -137,7 +137,6 @@ Potential areas for improvement:
 - REST API for remote access
 - Customizable themes and layouts
 
----
 
 **Version**: 3.0  
 **Last Updated**: 2026
