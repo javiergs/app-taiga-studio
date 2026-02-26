@@ -16,10 +16,20 @@ import java.util.List;
  * @author Dr.Gonzalez-Sanchez
  * @version 3.0
  */
-
 public class TestHomePanel extends JFrame {
 	
 	public TestHomePanel() {
+		loadData();
+		// Initialize UI
+		HomePanel home = new HomePanel();
+		MainManager manager = new MainManager(this);
+		MainManager.addHomePanel(home);
+		MainManager.addProjectArenaPanel(new ProjectArenaPanel());
+		MainManager.addProjectPanel(new ProjectPanel());
+		MainManager.changeView(MainManager.HOME_PANEL);
+	}
+	
+	private void loadData() {
 		// Add blackboard data
 		Blackboard blackboard = Blackboard.getInstance();
 		Project project1 = new data.Project("Project Alpha", "This is the first test project.");
@@ -42,7 +52,6 @@ public class TestHomePanel extends JFrame {
 		// Sprint data for project 1
 		// 1) Make project1 active
 		blackboard.setActiveProject(project1);
-
 		// 2) Create and attach an active sprint (7 days total)
 		long DAY = 86400000L;
 		Date begin = new Date(System.currentTimeMillis());
@@ -77,38 +86,27 @@ public class TestHomePanel extends JFrame {
 		// Day 1 completions
 		Task t = s1.getTask(0);
 		if (t != null) t.setCompletionDate(new Date(begin.getTime() + 1L * DAY));
-		
 		t = s2.getTask(0);
 		if (t != null) t.setCompletionDate(new Date(begin.getTime() + 1L * DAY));
-// Day 2 completions
+		// Day 2 completions
 		t = s1.getTask(1);
 		if (t != null) t.setCompletionDate(new Date(begin.getTime() + 2L * DAY));
-// Day 3 completions
+		// Day 3 completions
 		t = s3.getTask(0);
 		if (t != null) t.setCompletionDate(new Date(begin.getTime() + 3L * DAY));
-// Day 4 completions
+		// Day 4 completions
 		t = s2.getTask(1);
 		if (t != null) t.setCompletionDate(new Date(begin.getTime() + 4L * DAY));
-// Day 5 completions
+		// Day 5 completions
 		t = s4.getTask(0);
 		if (t != null) t.setCompletionDate(new Date(begin.getTime() + 5L * DAY));
 		t = s4.getTask(1);
 		if (t != null) t.setCompletionDate(new Date(begin.getTime() + 5L * DAY));
-		
-		
-		// Initialize HomePanel
-		HomePanel home = new HomePanel();
-		// Initialize MainManager
-		MainManager manager = new MainManager(this);
-		MainManager.addHomePanel(home);
-		MainManager.addProjectArenaPanel(new ProjectArenaPanel());
-		MainManager.addProjectPanel(new ProjectPanel());
-		MainManager.changeView(MainManager.HOME_PANEL);
 	}
 	
 	public static void main(String[] args) {
 		TestHomePanel main = new TestHomePanel();
-		main.setTitle("Testing HomePanel");
+		main.setTitle("Testing ...");
 		main.setSize(1024, 768);
 		main.setLocationRelativeTo(null);
 		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
