@@ -26,42 +26,6 @@ A Java Swing-based Agile project management application inspired by Taiga.io. Ta
 - **Sprint Overview**: View and manage active sprints
 - **Status Tracking**: Monitor story and task statuses
 
-## 🚀 Getting Started
-
-### Prerequisites
-- **Java 21** or higher
-- **Maven 3.x** or higher
-
-### Building the Project
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd TaigaStudioThree
-
-# Build with Maven
-mvn clean install
-
-# Run the application
-mvn exec:java -Dexec.mainClass="home.Main"
-```
-
-Alternatively, compile and run manually:
-
-```bash
-# Compile
-mvn compile
-
-# Run
-java -cp target/classes home.Main
-```
-
-### Running Tests
-
-```bash
-mvn test
-```
-
 ## 🏗️ Architecture
 
 The application follows a modular architecture organized into distinct packages:
