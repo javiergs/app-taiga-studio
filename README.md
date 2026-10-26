@@ -1,160 +1,104 @@
 # Taiga Studio 3.0
 
-A Java Swing-based Agile project management application inspired by Taiga.io. Taiga Studio provides a comprehensive platform for managing projects, user stories, sprints, and tasks with an intuitive desktop interface.
+**A Java Swing application for Agile project management, inspired by Taiga.**
 
-## 📋 Features
+Taiga Studio is a desktop application for exploring Agile project workflows, including projects, backlogs, user stories, sprints, and tasks. The codebase is also a useful starting point for **CSC 3100 software design, requirements, refactoring, and testing exercises**.
 
-### Project Management
-- **Create and manage multiple projects** with titles and descriptions
-- **Switch between projects** with an easy-to-use home panel
-- **Edit and delete projects** on the fly
+> **Educational project:** This repository is a Java desktop application and a potential teaching template. It is not affiliated with or endorsed by Taiga. Functionality and setup should be verified before use in a course.
 
-### Agile Workflow
-- **Product Backlog**: Manage user stories with drag-and-drop prioritization
-- **Sprint Planning**: Create and manage sprints with start and end dates
-- **Story Management**: 
-  - Create user stories with titles, descriptions, and story points
-  - Assign priorities and status to stories
-  - Move stories between backlog and sprints
-- **Task Tracking**:
-  - Break down stories into tasks
-  - Drag-and-drop task reordering
-  - Edit and manage task details
+## Features
 
-### Visualization
-- **Burndown Charts**: Track sprint progress with visual burndown charts
-- **Sprint Overview**: View and manage active sprints
-- **Status Tracking**: Monitor story and task statuses
+- **Projects:** Create, select, edit, and delete projects.
+- **Product backlog:** Create and prioritize user stories, including drag-and-drop interactions.
+- **Sprint planning:** Organize stories into time-boxed sprints.
+- **Tasks:** Manage tasks associated with stories and reorder them through the UI.
+- **Progress views:** Explore sprint information and burndown-chart functionality.
 
+## Requirements
 
-## 🏗️ Architecture
+- **JDK 21**
+- **Apache Maven 3.x**
+- A desktop environment capable of displaying **Java Swing** windows
 
-The application follows a modular architecture organized into distinct packages:
+The project uses Swing from the Java standard library and JUnit 5 for tests. The Maven configuration does not declare an external charting or AI API library.
 
-### Core Packages
+## Build, test, and run
 
-- **`data`**: Domain model classes
-  - `Project`: Project entity with backlog and sprints
-  - `Story`: User story with points, priority, and tasks
-  - `Task`: Individual task within a story
-  - `Sprint`: Time-boxed iteration containing stories
-  - `Backlog`: Collection of user stories
-  - `Blackboard`: Singleton pattern for managing application state
-  - `Developer`: Developer entity
+From the repository root:
 
-- **`home`**: Main application entry point and home screen
-  - `Main`: Application entry point and main window
-  - `MainManager`: View manager for switching between panels
-  - `HomePanel`: Home screen with project list
-  - `StatusBarPanel`: Application status bar
-
-- **`project`**: Project and sprint management UI
-  - `ProjectPanel`: Main project view
-  - `BacklogPanel`: Product backlog management
-  - `SprintPanel`: Sprint creation and management
-  - `BurndownChart`: Sprint burndown chart visualization
-  - Listeners for project and backlog interactions
-
-- **`stories`**: User story management
-  - `NewStoryPanel`: Create new user stories
-  - `EditStoryPanel`: Edit existing stories
-  - `BacklogStoryTransferable`: Drag-and-drop support for stories
-  - `StoryReorderHandler`: Reordering stories in backlog
-
-- **`tasks`**: Task management
-  - `TaskPanel`: Create and edit tasks
-  - `TaskListPanel`: Display list of tasks
-  - `TaskTransferHandler`: Drag-and-drop task reordering
-  - `TaskListener`: Task interaction handling
-
-## 🧪 Testing
-
-The project includes two types of tests:
-
-### Automated Unit & Integration Tests (No UI Required)
-Perfect for CI/CD pipelines and automated validation:
-
-- `TaskUnitTest`: Task creation, modification, completion tracking
-- `StoryUnitTest`: Story lifecycle, task management, validation
-- `BacklogUnitTest`: Backlog operations, prioritization, reordering
-- `SprintUnitTest`: Sprint management, story handling, date validation
-- `ProjectUnitTest`: Project management, sprint and backlog operations
-- `DeveloperUnitTest`: Developer entity management
-- `BlackboardUnitTest`: Singleton pattern, project management, state handling
-- `ProjectWorkflowIntegrationTest`: End-to-end workflow testing
-
-### Manual UI Tests
-For visual testing and demonstrations:
-- `TestHomePanel`: Home panel features
-
-**📊 Test Reports:** Generated in `target/surefire-reports/` after running tests
-
-## 📦 Dependencies
-
-The project uses:
-- **Java Swing**: For GUI components
-- **JUnit**: For testing (via Maven Surefire)
-- **Maven**: For build management
-
-No external third-party libraries required beyond Java SE standard library.
-
-## 👥 Authors
-
-- **Dr. Gonzalez-Sanchez** - Project Lead & Instructor
-- **Johnny Parini** - Core Development
-- **Owen Sam** - Project Management Features
-- **Owen Ledrick** - Project Management Features
-- **Jonathan Garcia** - Story Management
-- **Collin Howard** - Story & Task Features
-- **Alexander Bloomer** - Task Management
-- **Kevin Mokarapiromya** - Task Management
-- **Finley Room** - Sprint Management
-
-## 🔧 Development
-
-### Project Structure
-
-```
-TaigaStudioThree/
-├── pom.xml                 # Maven configuration
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── data/       # Domain model
-│   │   │   ├── home/       # Main application & home screen
-│   │   │   ├── project/    # Project & sprint UI
-│   │   │   ├── stories/    # Story management
-│   │   │   └── tasks/      # Task management
-│   │   └── resources/      # Application resources
-│   └── test/
-│       └── java/           # Test classes
-└── target/                 # Build output
+```bash
+mvn clean test
+mvn package
 ```
 
-### Coding Guidelines
+Launch the desktop application after compilation:
 
-- Java 21 features and syntax
-- Package-private visibility where appropriate
-- Null-safe programming with `Objects.requireNonNull()`
-- Singleton pattern for global state (`Blackboard`)
-- Listener pattern for UI interactions
-- TransferHandler for drag-and-drop functionality
+```bash
+java -cp target/classes home.Main
+```
 
-## 🐛 Known Issues
+The application entry point is `home.Main`. The launch command assumes compilation succeeded and is based on the current source structure; it has **not been independently executed** as part of this documentation update. The application requires a graphical desktop session.
 
-Please report issues to the project maintainers.
+JUnit test reports are generated under `target/surefire-reports/`. GitHub Actions runs `mvn -B test` on pushes and pull requests to `main`, `master`, and `develop`.
 
-## 🚧 Future Enhancements
+## Code organization
 
-Potential areas for improvement:
-- Persistence layer (database or file-based storage)
-- User authentication and multi-user support
-- Advanced reporting and analytics
-- Export functionality (PDF, CSV)
-- REST API for remote access
-- Customizable themes and layouts
+| Package | Responsibility | Representative classes |
+| --- | --- | --- |
+| `data` | Project and Agile domain models; shared application state | `Project`, `Backlog`, `Sprint`, `Story`, `Task`, `Developer`, `Blackboard` |
+| `home` | Application entry point, project selection, and view navigation | `Main`, `MainManager`, `HomePanel` |
+| `project` | Project, backlog, sprint, and burndown views | `ProjectPanel`, `BacklogPanel`, `SprintPanel`, `BurndownChart` |
+| `stories` | Story creation, editing, and drag-and-drop | `NewStoryPanel`, `EditStoryPanel`, `StoryReorderHandler` |
+| `tasks` | Task views, listeners, and drag-and-drop | `TaskPanel`, `TaskListPanel`, `TaskTransferHandler` |
 
+The `data.Blackboard` class centralizes project state using a Singleton and JavaBeans property-change notifications. Swing listeners and transfer handlers connect user interactions to application behavior. These are useful patterns to examine critically, rather than assumptions that every design choice is ideal.
 
-**Version**: 3.0  
-**Last Updated**: 2026
+## Testing
 
+The repository includes:
+
+- **Unit tests** for `Project`, `Sprint`, `Backlog`, `Story`, `Task`, `Developer`, and `Blackboard`.
+- **Integration tests** in `src/test/java/integration/`, including `ProjectWorkflowIntegrationTest`.
+- **UI-related test code**, including `TestHomePanel`, which may require a graphical environment.
+
+The presence of tests does not imply full coverage or guarantee that every UI interaction is automated.
+
+## Suggested CSC 3100 exercises
+
+This application can be used as a **starting point** for project-based work, with scope adjusted to the course:
+
+1. **Requirements:** Specify a new user story, acceptance criteria, and observable behavior.
+2. **Design review:** Model selected classes and interactions in UML; identify coupling and responsibilities.
+3. **Design patterns:** Evaluate the Singleton and Observer-like notification mechanisms; propose improvements with justification.
+4. **Refactoring:** Remove dead/commented-out code, improve separation of concerns, and preserve behavior with regression tests.
+5. **Testing:** Add JUnit tests for domain invariants, boundary cases, and cross-object workflows.
+6. **Feature extension:** Prototype persistence, backlog filtering, or export functionality through a reviewed pull request.
+
+These are **suggested activities**, not existing assignments or guaranteed implemented features.
+
+## Development notes
+
+- Prefer small pull requests with a clear motivation, acceptance criteria, and relevant tests.
+- Keep changes to domain logic separate from Swing presentation changes when practical.
+- Run `mvn test` before submitting.
+- Do not assume that in-memory project data persists after the application exits; a persistence layer is a potential extension.
+
+## Contributors
+
+This project incorporates contributions credited in the earlier project documentation:
+
+- Dr. González-Sánchez — Project lead and instructor
+- Johnny Parini — Core development
+- Owen Sam and Owen Ledrick — Project management features
+- Jonathan Garcia — Story management
+- Collin Howard — Story and task features
+- Alexander Bloomer and Kevin Mokarapiromya — Task management
+- Finley Room — Sprint management
+
+## License
+
+See [LICENSE](LICENSE) for the repository's license.
+
+## Possible future work
+
+Persistence, richer reporting, export functionality, and improvements to test coverage and architecture are possible directions for future development.
